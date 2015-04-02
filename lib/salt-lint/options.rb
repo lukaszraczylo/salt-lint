@@ -8,12 +8,12 @@ module SaltLint
     def self.act
       # Scanning for files in
       if $arguments.scan_given
-        list_of_sls_files = SaltLint::Actions.scan
-        list_of_sls_files.each do |f|
+        SaltLint::Actions.scan.each do |f|
           SaltLint::Actions.check_rules(f)
         end
       end
     end
+
 
     # Parsing command line arguments
     def self.parse(args)
@@ -30,7 +30,6 @@ EOS
         opt :file,    'File to check against', type: :string
         opt :scan,    'Traversal scan of current directory and sub dirs', type: :string
       end
-
       $debug = opts.debug.to_i
       return opts
     end

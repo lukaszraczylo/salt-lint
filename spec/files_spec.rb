@@ -9,8 +9,14 @@ describe 'Files operations' do
   end
 
   it 'checks well formatted file' do
-    $arguments = OpenStruct.new({ file: 'tests/well_formatted_top.sls', file_given: true, debug: 5, debug_given: true })
-    $debug = 5
+    $arguments = OpenStruct.new({ file: 'tests/well_formatted_top.sls', file_given: true })
+    $debug = 0
     expect(SaltLint::Actions.check_rules($arguments.file)).to eq true
+  end
+
+  it 'checks file with multiple errors' do
+    $arguments = OpenStruct.new({ file: 'tests/file_with_multiple_errors.sls', file_given: true })
+    $debug = 0
+    expect(SaltLint::Actions.check_rules($arguments.file)).to eq false
   end
 end

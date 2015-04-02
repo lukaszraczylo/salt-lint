@@ -45,8 +45,5 @@ module Printer
 
     # Kill switch for error messages. Using this one to abort script run as
     # something went really wrong there.
-    if kill == true
-      exit 1
-    end
   end
 end

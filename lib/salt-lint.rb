@@ -1,5 +1,6 @@
 require 'salt-lint/version'
 require 'salt-lint/runner'
+require 'salt-lint/tests'
 
 # Main salt-lint module declaration.
 module SaltLint
