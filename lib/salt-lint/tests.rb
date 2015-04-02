@@ -44,19 +44,20 @@ module SaltLint
     end
 
     # Test content: Checking if given file is a valid YAML file.
-    def self.check_if_proper_yaml(line_number, line, file)
-      is_ok = true
-      begin
-        YAML.load_file(file)
-      rescue Psych::SyntaxError
-        is_ok = false
-        if ! $invalid_yaml.has_key?(file)
-          Printer.print('warning', "File #{file} is not YAML. Unable to parse.")
-          $invalid_yaml[file] = true
-        end
-      end
-      return is_ok
-    end
+    # Test disabled as it returns false positive when there's salt pillars declaration present
+    # def self.check_if_proper_yaml(line_number, line, file)
+    #   is_ok = true
+    #   begin
+    #     YAML.load_file(file)
+    #   rescue Psych::SyntaxError
+    #     is_ok = false
+    #     if ! $invalid_yaml.has_key?(file)
+    #       Printer.print('warning', "File #{file} is not YAML. Unable to parse.")
+    #       $invalid_yaml[file] = true
+    #     end
+    #   end
+    #   return is_ok
+    # end
 
     # Test content: Checking if given line isn't longer than 80 characters.
     def self.check_line_length(line_number, line, file)
