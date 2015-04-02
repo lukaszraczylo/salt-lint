@@ -10,4 +10,7 @@ Development: [![Development: Build Status](https://api.shippable.com/projects/55
 [![Code Climate](https://codeclimate.com/github/lukaszraczylo/salt-lint/badges/gpa.svg)](https://codeclimate.com/github/lukaszraczylo/salt-lint)
 [![Gratipay](https://img.shields.io/gratipay/lukaszraczylo.svg)](https://gratipay.com/lukaszraczylo/)
 
+## Documentation:
+Please see [documentation](doc/list_tests.md) to interpret any results returned.
+
 ## Do not use it until version >= 0.5

@@ -15,9 +15,19 @@ module SaltLint
       return is_ok
     end
 
-    # Test content: Checking given line for trailing whitespaces.
-    def self.check_trailing_whitespace(line_number, line, file)
-      check_for_regexp(line_number, line, file, /[ \t]+$/, "Checking for trailing whitespaces: #{line_number}", "Trailing whitespace character found: #{file}:#{line_number}")
+    # Test content: Check context and block all the single-word declarations
+    def self.check_if_single_word_declaration(line_number, line, file)
+      is_ok = true
+      Printer.print('debug', "Looking for single word declarations in #{file}", 5)
+      if line =~ /(pkg|file|service):\n/
+          f = File.readlines(file)[line_number-1..line_number+2]
+          ( f[2] =~ /^\n$/ && f[1] =~ /- \w+\n$/ ) ? is_ok = true : is_ok = false
+          if ! $invalid_oneword.has_key?(file) && is_ok == false
+            Printer.print('warning', "Found single line declaration in #{file}:#{line_number-1}-#{line_number+2}")
+            $invalid_oneword[file] = is_ok
+          end
+      end
+      return is_ok
     end
 
     # Test content: Checking given file for no newline at the end of the file.
@@ -57,6 +67,11 @@ module SaltLint
         Printer.print('warning', "Line length above 80 characters: #{file}:#{line_number}")
       end
       return is_ok
+    end
+
+    # Test content: Checking given line for trailing whitespaces.
+    def self.check_trailing_whitespace(line_number, line, file)
+      check_for_regexp(line_number, line, file, /[ \t]+$/, "Checking for trailing whitespaces: #{line_number}", "Trailing whitespace character found: #{file}:#{line_number}")
     end
 
     # Test content: Checking if given line contains double quoted content without
