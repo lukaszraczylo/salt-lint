@@ -9,7 +9,7 @@ module SaltLint
 
       checks_went_fine = true
       Printer.print('debug', "Checking file: #{f}", 5)
-      test_suite_methods = SaltLint::Tests.methods(false).sort
+      test_suite_methods = SaltLint::Tests.methods(false).sort - [ :check_for_regexp ]
       line_counter = 1
       File.readlines(f).each do |l|
         test_suite_methods.each do |m|

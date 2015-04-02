@@ -4,15 +4,20 @@ module SaltLint
   # Main class for all the tests.
   class Tests
 
-    # Test content: Checking given line for trailing whitespaces.
-    def self.check_trailing_whitespace(line_number, line, file)
+    # Helper: Checking for whitespaces
+    def self.check_for_regexp(line_number, line, file, regex, debug_msg, warning_msg)
       is_ok = true
-      Printer.print('debug', "Checking for trailing whitespaces: #{line_number}", 5)
-      line.match(/[ \t]+$/) ? is_ok = false : nil
+      Printer.print('debug', debug_msg, 5)
+      line.match(regex) ? is_ok = false : nil
       if ! is_ok
-        Printer.print('warning', "Trailing whitespace character found: #{file}:#{line_number}")
+        Printer.print('warning', warning_msg)
       end
       return is_ok
+    end
+
+    # Test content: Checking given line for trailing whitespaces.
+    def self.check_trailing_whitespace(line_number, line, file)
+      check_for_regexp(line_number, line, file, /[ \t]+$/, "Checking for trailing whitespaces: #{line_number}", "Trailing whitespace character found: #{file}:#{line_number}")
     end
 
     # Test content: Checking given file for no newline at the end of the file.
@@ -57,13 +62,7 @@ module SaltLint
     # Test content: Checking if given line contains double quoted content without
     # variable.
     def self.check_double_quotes(line_number, line, file)
-      is_ok = true
-      Printer.print('debug', "Checking for double quotes: #{line_number}", 5)
-      line.match(/\"(?!{+).*(?!}+)\"/) ? is_ok = false : nil
-      if ! is_ok
-        Printer.print('warning', "Using double quotes with no variables: #{file}:#{line_number}")
-      end
-      return is_ok
+      check_for_regexp(line_number, line, file, /\"(?!{+).*(?!}+)\"/, "Checking for double quotes: #{line_number}", "Using double quotes with no variables: #{file}:#{line_number}")
     end
   end
 end

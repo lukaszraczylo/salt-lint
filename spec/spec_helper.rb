@@ -1,14 +1,26 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
-require 'salt-lint'
+
 require 'rspec'
+require 'ostruct'
+require 'salt-lint'
 require 'aruba/rspec'
 require 'pathname'
-require 'ostruct'
+# require 'coveralls'
+# require 'simplecov'
+# require 'codeclimate-test-reporter'
 
 require 'salt-lint/printer'
 require 'salt-lint/actions'
+
+# SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+#   SimpleCov::Formatter::HTMLFormatter,
+#   Coveralls::SimpleCov::Formatter
+# ]
+
+# SimpleCov.start
+# CodeClimate::TestReporter.start
 
 RSpec.configure do |c|
   c.fail_fast = true
