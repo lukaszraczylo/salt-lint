@@ -31,6 +31,7 @@ module SaltLint
         return files
       else
         Printer.print('error', 'No salt state files found.')
+        exit 1
       end
     end
   end

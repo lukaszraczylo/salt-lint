@@ -4,6 +4,7 @@ module SaltLint
   # Main class for all the tests.
   class Tests
 
+    # Test content: Checking given line for trailing whitespaces.
     def self.check_trailing_whitespace(line_number, line, file)
       is_ok = true
       Printer.print('debug', "Checking for trailing whitespaces: #{line_number}", 5)
@@ -14,6 +15,7 @@ module SaltLint
       return is_ok
     end
 
+    # Test content: Checking given file for no newline at the end of the file.
     def self.check_for_no_newline(line_number, line, file)
       is_ok = true
       Printer.print('debug', "Checking for no-newline at the end of the file in file #{file}", 5)
@@ -26,12 +28,12 @@ module SaltLint
       return is_ok
     end
 
-
+    # Test content: Checking if given file is a valid YAML file.
     def self.check_if_proper_yaml(line_number, line, file)
       is_ok = true
       begin
         YAML.load_file(file)
-      rescue SyntaxError
+      rescue Psych::SyntaxError
         is_ok = false
         if ! $invalid_yaml.has_key?(file)
           Printer.print('warning', "File #{file} is not YAML. Unable to parse.")
@@ -41,7 +43,7 @@ module SaltLint
       return is_ok
     end
 
-
+    # Test content: Checking if given line isn't longer than 80 characters.
     def self.check_line_length(line_number, line, file)
       is_ok = true
       Printer.print('debug', "Checking line length: #{line_number}", 5)
@@ -52,11 +54,12 @@ module SaltLint
       return is_ok
     end
 
-
+    # Test content: Checking if given line contains double quoted content without
+    # variable.
     def self.check_double_quotes(line_number, line, file)
       is_ok = true
       Printer.print('debug', "Checking for double quotes: #{line_number}", 5)
-      line.match(/\".*\"/) ? is_ok = false : nil
+      line.match(/\"(?!{+).*(?!}+)\"/) ? is_ok = false : nil
       if ! is_ok
         Printer.print('warning', "Using double quotes with no variables: #{file}:#{line_number}")
       end

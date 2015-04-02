@@ -8,8 +8,11 @@ module SaltLint
     def self.act
       # Scanning for files in
       if $arguments.scan_given
-        SaltLint::Actions.scan.each do |f|
-          SaltLint::Actions.check_rules(f)
+        list_of_files = SaltLint::Actions.scan
+        if list_of_files.count > 0
+          SaltLint::Actions.scan.each do |f|
+            SaltLint::Actions.check_rules(f)
+          end
         end
       end
     end
