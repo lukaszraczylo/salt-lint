@@ -1,0 +1,10 @@
+language: ruby
+install:
+  - bundle install
+
+notifications:
+  email:
+    recipients:
+      - shippable@raczylo.com
+    on_success: change
+    on_failure: always
