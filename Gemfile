@@ -1,8 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'rspec'
+group :test do
+  gem 'rspec'
+  gem 'fuubar'
+end
 gem 'colorize'
 gem 'aruba-rspec'
-gem 'fuubar'
 gem 'trollop'
 gem 'awesome_print'

@@ -2,6 +2,10 @@ language: ruby
 install:
   - bundle install
 
+env:
+  global:
+    - secure: bFWu5rjnllXLSI7EqWqlvOQZ6mpKMv3RnFgq9DFM9aeCmkrd5tr5hH+SQDuX9W5okJDoytJX60xPcDtVShabgtTPcadEl4bSjgRgG+1Uof33TmNzhlLRBpiZ6auOtWxW3wHqUt9g7YNuj4/wFstdVnud7c8zBvClsy32V4KNrrUdhLl0Qyb2ULv82V1yBdgQ2wESdAa0La5OoP43+qTkD3lm8Z9D/X3qDJcKT59ylolnBwi25XQUDa+4v5YbC2zUK+HUyayNLgH7Rqc1tLYrQv6a1qogwE0yPRChd7Ig+y73MqRkWmCts6kTpkpOpKLaFW3sMxrwsftOhkZ4ns2GnQ==
+
 notifications:
   email:
     recipients:

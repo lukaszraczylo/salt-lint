@@ -29,4 +29,12 @@ describe 'Tests suite checks if' do
   it 'won\'t allow to forget about newline at the end of the file' do
     expect(SaltLint::Tests.check_for_no_newline(0, 0, test_file_bad)).to eq false
   end
+
+  it 'won\'t allow to single word declarations' do
+    expect(SaltLint::Tests.check_if_single_word_declaration(5, "pkg:\n", test_file_bad)).to eq false
+  end
+
+  it 'will allow condensed declarations' do
+    expect(SaltLint::Tests.check_if_single_word_declaration(5, "pkg.installed\n", test_file_good)).to eq true
+  end
 end

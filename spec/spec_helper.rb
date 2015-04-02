@@ -1,11 +1,12 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
-require 'salt-lint'
+
 require 'rspec'
+require 'ostruct'
+require 'salt-lint'
 require 'aruba/rspec'
 require 'pathname'
-require 'ostruct'
 
 require 'salt-lint/printer'
 require 'salt-lint/actions'
