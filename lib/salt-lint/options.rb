@@ -32,6 +32,13 @@ EOS
         opt :debug,   'Enable debug mode', default: 0
         opt :file,    'File to check against', type: :string
         opt :scan,    'Traversal scan of current directory and sub dirs', type: :string
+
+        opt :check_newlines, 'Check for newline at the end of the file', default: true, short: :none
+        opt :check_double_quotes, 'Check for double quotes without variables', default: true, short: :none
+        opt :check_whitespaces, 'Check for whitespaces at the end of the line', default: true, short: :none
+        opt :check_line_length, 'Check lines length', default: true, short: :none
+        opt :check_single_word, 'Check for single word declaration', default: true, short: :none
+
       end
       $debug = opts.debug.to_i
       return opts

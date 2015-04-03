@@ -1,3 +1,4 @@
+cache: true
 language: ruby
 install:
   - bundle install
