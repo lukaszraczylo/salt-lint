@@ -1,3 +1,5 @@
+require 'find'
+
 module SaltLint
   # Executing appropriate actions
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -27,9 +29,15 @@ module SaltLint
 
     # Scans folder specified as argument --scan for SLS files and returns array
     def self.scan
-      files = Dir.glob( $arguments.scan + "**/*.sls")
-      if files and files.count > 0
-        return files
+      # files = Dir.glob( $arguments.scan + "**/*")
+      files_to_return = Array.new
+      Find.find($arguments.scan).to_a.each do |f|
+        if f =~ /.*\.sls$/
+          files_to_return.push(f)
+        end
+      end
+      if files_to_return.count > 0
+        return files_to_return
       else
         Printer.print('error', 'No salt state files found.')
         exit 1
