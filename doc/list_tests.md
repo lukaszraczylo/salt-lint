@@ -45,3 +45,9 @@ Each line should be terminated in a newline character, including the last one. S
 
 ### <a name="trailing-whitespace"></a>Trailing whitespace character found
 Trailing whitespaces take more spaces than necessary, any regexp based searches won't return lines as a result due to trailing whitespace(s).
+
+### <a name="quoted-booleans"></a>Quoted boolean found
+Boolean values behave differently when quoted as they're interpreted as strings which you obviously don't want.
+
+### <a name="filename-quoted"></a>Unquoted file mode found
+Unquoted file modes are interpreted as integers and evaluated as octal.

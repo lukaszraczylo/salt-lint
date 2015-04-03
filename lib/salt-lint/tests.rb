@@ -46,22 +46,6 @@ module SaltLint
       return is_ok
     end
 
-    # Test content: Checking if given file is a valid YAML file.
-    # Test disabled as it returns false positive when there's salt pillars declaration present
-    # def self.check_if_proper_yaml(line_number, line, file)
-    #   is_ok = true
-    #   begin
-    #     YAML.load_file(file)
-    #   rescue Psych::SyntaxError
-    #     is_ok = false
-    #     if ! $invalid_yaml.has_key?(file)
-    #       Printer.print('warning', "File #{file} is not YAML. Unable to parse.")
-    #       $invalid_yaml[file] = true
-    #     end
-    #   end
-    #   return is_ok
-    # end
-
     # Test content: Checking if given line isn't longer than 80 characters.
     def self.check_line_length(line_number, line, file)
       is_ok = true
@@ -98,6 +82,15 @@ module SaltLint
     def self.check_quoted_boolean(line_number, line, file)
       if $arguments.check_quoted_boolean
         check_for_regexp(line_number, line, file, /\s+(\"|\')(true|false)(\"|\')$/, "Checking for quoted booleans: #{line_number}", "Quoted boolean found: #{file}:#{line_number}")
+      else
+        return true
+      end
+    end
+
+    # Test content: Check if file mode with leading zero is wrapped into single quotes
+    def self.check_file_mode_single_quotes(line_number, line, file)
+      if $arguments.check_quoted_file_mode
+        check_for_regexp(line_number, line, file, /mode\:\s\d{3,4}$/, "Checking if file mode is wrapped in single quotes: #{line_number}", "Unquoted file mode found: #{file}:#{line_number}")
       else
         return true
       end
