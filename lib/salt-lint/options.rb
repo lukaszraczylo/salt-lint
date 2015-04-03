@@ -38,6 +38,7 @@ EOS
         opt :check_whitespaces, 'Check for whitespaces at the end of the line', default: true, short: :none
         opt :check_line_length, 'Check lines length', default: true, short: :none
         opt :check_single_word, 'Check for single word declaration', default: true, short: :none
+        opt :check_quoted_boolean, 'Check for quoted booleans', default: true, short: :none
 
       end
       $debug = opts.debug.to_i
