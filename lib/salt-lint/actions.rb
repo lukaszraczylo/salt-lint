@@ -15,10 +15,30 @@ module SaltLint
       test_suite_methods = SaltLint::Tests.methods(false).sort - [ :check_for_regexp ]
       line_counter = 1
       File.readlines(f).each do |l|
-        test_suite_methods.each do |m|
-          if ! $invalid_yaml[f]
-            checks_went_fine_tmp = SaltLint::Tests.send(m, line_counter, l, f)
-            checks_went_fine_tmp == false ? checks_went_fine = false : nil
+        skip = false
+        tmp_l = l.gsub(/\s+/, '')
+        # Comments
+        if tmp_l =~ /\{?#(.+)?\}?/
+          skip = true
+        # Empty lines
+        elsif tmp_l =~ /^$/
+          skip = true
+        # Functions
+        elsif tmp_l =~ /\{+.+\(.+\).+\}+/
+          skip = true
+        # Variables
+        elsif tmp_l =~ /\{\{.+\}\}/
+          l = l.gsub(/\{\{.+\}\}/, 'random_string')
+        # If / Else blocks
+        elsif tmp_l =~ /^\{\%.*\%\}$/
+          skip = true
+        end
+        if ! skip
+          test_suite_methods.each do |m|
+            if ! $invalid_yaml[f]
+              checks_went_fine_tmp = SaltLint::Tests.send(m, line_counter, l, f)
+              checks_went_fine_tmp == false ? checks_went_fine = false : nil
+            end
           end
         end
         line_counter += 1

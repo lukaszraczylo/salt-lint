@@ -5,6 +5,7 @@
 * [Found single line declaration](#single-declaration)
 * [No newline at the end of the file](#no-newline)
 * [Trailing whitespace character found](#trailing-whitespace)
+* [Found tabs used instead of spaces](#found-tabs)
 
 ### <a name="double-quotes"></a>Using double quotes with no variables
 In general - it's a bad idea. All the strings which does not contain dynamic content ( variables ) should use single quote instead of double.
@@ -51,3 +52,6 @@ Boolean values behave differently when quoted as they're interpreted as strings 
 
 ### <a name="filename-quoted"></a>Unquoted file mode found
 Unquoted file modes are interpreted as integers and evaluated as octal.
+
+### <a name="found-tabs"></a>Found tabs used instead of spaces
+[PEP-8](http://legacy.python.org/dev/peps/pep-0008/#tabs-or-spaces) says "spaces" so we require those instead of tabs as Salt is python-friendly ( said guy who wrote a Salt linter in Ruby ).

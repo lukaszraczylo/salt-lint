@@ -59,6 +59,16 @@ module SaltLint
       return is_ok
     end
 
+
+    # Test content: Check for tabs used instead of spaces.
+    def self.check_if_tabs_used(line_number, line, file)
+      if $arguments.check_tabs
+        check_for_regexp(line_number, line, file, /^[\t]+/, "Checking for tabs presence: #{line_number}", "Found tabs used instead of spaces: #{file}:#{line_number}")
+      else
+        return true
+      end
+    end
+
     # Test content: Checking given line for trailing whitespaces.
     def self.check_trailing_whitespace(line_number, line, file)
       if $arguments.check_whitespaces

@@ -42,6 +42,7 @@ EOS
         opt :check_single_word, 'Check for single word declaration', default: true, short: :none
         opt :check_quoted_boolean, 'Check for quoted booleans', default: true, short: :none
         opt :check_quoted_file_mode, 'Check for unquoted file modes', default: true, short: :none
+        opt :check_tabs, 'Check if tabs used instead of spaces', default: true, short: :none
 
       end
       $debug = opts.debug.to_i
