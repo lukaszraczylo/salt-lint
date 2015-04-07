@@ -14,6 +14,8 @@ module SaltLint
             SaltLint::Actions.check_rules(f)
           end
         end
+      elsif $arguments.file_given
+        SaltLint::Actions.check_rules($arguments.file)
       end
     end
 

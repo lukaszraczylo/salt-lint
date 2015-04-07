@@ -13,4 +13,10 @@ Development: [![Development: Build Status](https://api.shippable.com/projects/55
 ## Documentation:
 Please see [documentation](doc/list_tests.md) to interpret any results returned.
 
+## Running within git repo with its git files only
+
+```
+git ls-files | grep sls | xargs -I {} salt-lint -f {}
+```
+
 ## Do not use it until version >= 0.5
