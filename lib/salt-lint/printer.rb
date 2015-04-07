@@ -12,11 +12,12 @@ module Printer
     case msg_type
       when 'debug'
         prefix  = '[d]'
-        color   = 'light_black'
+        color   = 'black'
+        background = 'on_blue'
         show    = false
       when 'warning'
         prefix  = '[!]'
-        color   = 'yellow'
+        color   = 'light_black'
       when 'error'
         prefix  = '[!!!]'
         color   = 'red'
@@ -27,6 +28,7 @@ module Printer
       when 'success'
         prefix  = '[:)]'
         color   = 'light_green'
+        background = 'on_black'
       else
         prefix  = '[i]'
         color   = 'white'
@@ -40,7 +42,11 @@ module Printer
     end
 
     if show == true
-      puts "#{prefix} #{message}".send(color.to_sym)
+      if background
+        puts "#{prefix} #{message}".send(color.to_sym).send(background.to_sym)
+      else
+        puts "#{prefix} #{message}".send(color.to_sym)
+      end
     end
 
     # Kill switch for error messages. Using this one to abort script run as
