@@ -4,3 +4,5 @@ base:
   python:
     pkg:
       - installed
+      - value: 'false'
+					- mode: 0644
