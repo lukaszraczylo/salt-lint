@@ -37,7 +37,7 @@ module SaltLint
         if $arguments.check_newlines
         Printer.print('debug', "Checking for no-newline at the end of the file in file #{file}", 5)
         f = File.readlines(file).last
-        f.match(/^\n$/) ? is_ok = true : is_ok = false
+        f.match(/\n$/) ? is_ok = true : is_ok = false
         if ! $invalid_newline.has_key?(file) && is_ok == false
           Printer.print('warning', "No newline at the end of the file #{file}")
           $invalid_newline[file] = is_ok
