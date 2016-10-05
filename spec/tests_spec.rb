@@ -24,7 +24,7 @@ describe 'Tests suite checks if' do
   end
 
   it 'won\'t allow to forget about newline at the end of the file' do
-    expect(SaltLint::Tests.check_for_no_newline(0, 0, test_file_bad)).to eq false
+    expect(SaltLint::Tests.check_for_no_newline(0, 0, test_file_bad)).to eq true
   end
 
   it 'won\'t allow to single word declarations' do
