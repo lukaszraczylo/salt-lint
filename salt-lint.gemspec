@@ -18,9 +18,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.required_ruby_version = '>=1.9.2'
-  spec.add_development_dependency 'awesome_print', '~> 1.2.0', '>= 1.2.0'
-  spec.add_development_dependency 'trollop','2.1.2', '>= 2.1.2'
-  spec.add_development_dependency 'bundler', '~> 1.5'
+  spec.add_runtime_dependency 'awesome_print', '~> 1.2.0', '>= 1.2.0'
+  spec.add_runtime_dependency 'trollop','2.1.2', '>= 2.1.2'
+  spec.add_runtime_dependency 'bundler', '~> 1.5'
   spec.add_development_dependency 'rake', '~> 10.0', '>= 10.0.0'
   spec.add_development_dependency 'rspec', '~> 2.6'
 end
