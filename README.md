@@ -20,5 +20,3 @@ git ls-files | grep sls | xargs -I {} salt-lint -f {}
 ```
 
 ## Do not use it until version >= 0.5
-
-## Forked from lukaszraczylo/salt-lint and extended to return exit code > 0 if errors were found.
