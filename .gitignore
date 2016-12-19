@@ -2,3 +2,5 @@
 .DS_Store
 *.gem
 *.swp
+.bundle
+.vendor

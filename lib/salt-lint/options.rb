@@ -7,15 +7,25 @@ module SaltLint
     # Actions based on parsed command line arguments
     def self.act
       # Scanning for files in
+      errors = 0
       if $arguments.scan_given
         list_of_files = SaltLint::Actions.scan
         if list_of_files.count > 0
           SaltLint::Actions.scan.each do |f|
-            SaltLint::Actions.check_rules(f)
+            if(!SaltLint::Actions.check_rules(f))
+              errors = errors+1
+            end
           end
         end
       elsif $arguments.file_given
-        SaltLint::Actions.check_rules($arguments.file)
+        if(!SaltLint::Actions.check_rules($arguments.file))
+          errors = errors+1
+        end
+      end
+      puts("\n----- SUMMARY: -----")
+      Printer.print('warning', "Total errors found: #{errors}")
+      if(errors)
+        exit 1
       end
     end
 
