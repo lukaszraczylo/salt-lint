@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'awesome_print', '~> 1.2.0', '>= 1.2.0'
   spec.add_runtime_dependency 'trollop','2.1.2', '>= 2.1.2'
   spec.add_runtime_dependency 'bundler', '~> 1.5'
+  spec.add_runtime_dependency 'colorize', '~> 0.8.1'
   spec.add_development_dependency 'rake', '~> 10.0', '>= 10.0.0'
   spec.add_development_dependency 'rspec', '~> 2.6'
 end
