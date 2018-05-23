@@ -24,8 +24,10 @@ module SaltLint
       end
       puts("\n----- SUMMARY: -----")
       Printer.print('warning', "Total errors found: #{errors}")
-      if(errors)
+      if(errors>0)
         exit 1
+      else
+        exit 0
       end
     end
 
